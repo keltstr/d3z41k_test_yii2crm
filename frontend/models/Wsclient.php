@@ -17,14 +17,22 @@ class Wsclient
 	{
 		$this->_disconnect();
 	}
- 
+	
 	public function sendData($data)
 	{
 		// send actual data:
-		fwrite($this->_Socket, $data) or die('Error:' . $errno . ':' . $errstr); 
-		$wsData = fread($this->_Socket, 2000);       
+		fwrite($this->_Socket, $data) or die('Error:' . $errno . ':' . $errstr);
+		//$wsData = fread($this->_Socket, 2000);
+		//return $wsData;
+		
+	}
+	public function getData()
+	{
+		// send actual data:
+		$wsData = fread($this->_Socket, 2000) or die('Error:' . $errno . ':' . $errstr);;
 		return $wsData;
 	}
+	
  
 	private function _connect($host, $port)
 	{

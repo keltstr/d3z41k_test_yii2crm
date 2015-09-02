@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Wsclient;
+//use app\models\Wsclient;
 use app\models\Clients;
 use frontend\models\ClientsSearch;
 use yii\web\Controller;
@@ -67,11 +67,11 @@ class ClientsController extends Controller
      */
     public function actionView($id)
     {	
-		$Wsclient = new Wsclient('185.46.8.97', 8000);
-		$Wsclient->sendData(Yii::$app->user->identity->username .' @ view | id = '. $id);
-		unset($Wsclient);
-		
-       /* Yii::$app->db->createCommand()->insert('user_log', [
+		//$Wsclient = new Wsclient('vm12721.hv8.ru', 8000);
+		//$Wsclient->sendData(Yii::$app->user->identity->username .' @ view | id = '. $id);
+		//unset($Wsclient);
+			
+       Yii::$app->db->createCommand()->insert('user_log', [
         'user_name' => Yii::$app->user->identity->username,
         'type_event' => 'view', 
         'client_id' => $id ])->execute(); */
@@ -91,14 +91,14 @@ class ClientsController extends Controller
         $model = new Clients();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             
-        $Wsclient = new Wsclient('185.46.8.97', 8000);
-		$Wsclient->sendData(Yii::$app->user->identity->username .' @ create | id = '. $model->id);
-		unset($Wsclient);
+        //$Wsclient = new Wsclient('185.46.8.97', 8000);
+		//$Wsclient->sendData(Yii::$app->user->identity->username .' @ create | id = '. //$model->id);
+		//unset($Wsclient);
 			
-			/*Yii::$app->db->createCommand()->insert('user_log', [
+			Yii::$app->db->createCommand()->insert('user_log', [
                 'user_name' => Yii::$app->user->identity->username,
                 'type_event' => 'create', 
-                'client_id' => $model->id])->execute(); */
+                'client_id' => $model->id])->execute(); 
 
             return $this->redirect(['index']);
         } else {
@@ -126,7 +126,7 @@ class ClientsController extends Controller
  
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-		$Wsclient = new Wsclient('185.46.8.97', 8000);
+		/*$Wsclient = new Wsclient('185.46.8.97', 8000);
 		
 		if ($model->name != $n_name)
 			$message .= '[name]';
@@ -137,18 +137,18 @@ class ClientsController extends Controller
 		if ($model->age != $n_age)
 			$message .='[age]';
 		if ($model->born != $n_born)
-			$message .='[born]';
+			$message .='[born]';*/
 		
-            /*($model->name != $n_name) ? ($ch_name = true) : ($ch_name = 0);
+            ($model->name != $n_name) ? ($ch_name = true) : ($ch_name = 0);
             ($model->surname != $n_surname) ? ($ch_surname = true) : ($ch_surname = 0);
             ($model->email != $n_email) ? ($ch_email = true) : ($ch_email = 0);
             ($model->age != $n_age) ? ($ch_age = true) : ($ch_age = 0);
-            ($model->born != $n_born) ? ($ch_born = true) : ($ch_born = 0);*/
+            ($model->born != $n_born) ? ($ch_born = true) : ($ch_born = 0);
 			
-		$Wsclient->sendData(Yii::$app->user->identity->username .' @ update | id = '. $model->id.' '.$message);
-		unset($Wsclient);	
+		//$Wsclient->sendData(Yii::$app->user->identity->username .' @ update | id = '. //$model->id.' '.$message);
+		//unset($Wsclient);	
 			
-            /*Yii::$app->db->createCommand()->insert('user_log', [
+            Yii::$app->db->createCommand()->insert('user_log', [
                 'user_name' => Yii::$app->user->identity->username,
                 'type_event' => 'update', 
                 'client_id' => $id,
@@ -157,7 +157,7 @@ class ClientsController extends Controller
                 'ch_email' => $ch_email,
                 'ch_age' => $ch_age,
                 'ch_born' => $ch_born,
-                ] )->execute(); */ 
+                ] )->execute(); 
             
             return $this->redirect(['index']);
         } else {
@@ -177,14 +177,14 @@ class ClientsController extends Controller
     {
         $this->findModel($id)->delete();
 		
-		$Wsclient = new Wsclient('185.46.8.97', 8000);
-		$Wsclient->sendData(Yii::$app->user->identity->username .' @ delete | id = '. $id);
-		unset($Wsclient);
+		//$Wsclient = new Wsclient('185.46.8.97', 8000);
+		//$Wsclient->sendData(Yii::$app->user->identity->username .' @ delete | id = '. $id);
+		//unset($Wsclient);
 
-        /* Yii::$app->db->createCommand()->insert('user_log', [
+        /Yii::$app->db->createCommand()->insert('user_log', [
         'user_name' => Yii::$app->user->identity->username,
         'type_event' => 'delete', 
-        'client_id' => $id, ])->execute(); */
+        'client_id' => $id, ])->execute();
 
         return $this->redirect(['index']);
     }
