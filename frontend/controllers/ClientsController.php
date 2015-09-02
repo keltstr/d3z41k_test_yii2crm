@@ -74,7 +74,7 @@ class ClientsController extends Controller
        Yii::$app->db->createCommand()->insert('user_log', [
         'user_name' => Yii::$app->user->identity->username,
         'type_event' => 'view', 
-        'client_id' => $id ])->execute(); */
+        'client_id' => $id ])->execute(); 
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -181,7 +181,7 @@ class ClientsController extends Controller
 		//$Wsclient->sendData(Yii::$app->user->identity->username .' @ delete | id = '. $id);
 		//unset($Wsclient);
 
-        /Yii::$app->db->createCommand()->insert('user_log', [
+        Yii::$app->db->createCommand()->insert('user_log', [
         'user_name' => Yii::$app->user->identity->username,
         'type_event' => 'delete', 
         'client_id' => $id, ])->execute();
