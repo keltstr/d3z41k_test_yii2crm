@@ -12,10 +12,11 @@ echo Html::a("Off", ['wsserver/switchoff'], ['class' => 'btn btn-danger']);
 echo '<hr>';
 if(isset ($model->swt)) {
     echo '<b>'.$model->swt;
-    if($model->swt == 1){
+    if($model->swt == 1 or $model->swt == 0){
         $WebsocketServer = new WssController();
-        $WebsocketServer->start();
+        $WebsocketServer->start($model->swt);
     }
+		
     
 }
     

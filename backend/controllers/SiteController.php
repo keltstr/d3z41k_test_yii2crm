@@ -29,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'userlog', 'wsserver'],
+                        'actions' => ['index', 'userlog', 'socket'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -76,9 +76,9 @@ class SiteController extends Controller
         return $this->render('userlog', ['userlog' => $userlog,]);
     }
 
-    public function actionWsserver()
+    public function actionSocket()
     {
-        return $this->render('wsserver');
+        return $this->render('socket');
     }
 
     public function actionLogin()

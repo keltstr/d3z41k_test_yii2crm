@@ -11,7 +11,6 @@ class WsserverController extends \yii\web\Controller
 
 	public function actionIndex()
 	{
-
 		return $this->render('index');
 	}
 
@@ -23,6 +22,7 @@ class WsserverController extends \yii\web\Controller
                 'model' => $model,
             ]);
 	}
+
 	public function actionSwitchoff()
 	{
 		$model = new Wsserver();
@@ -31,7 +31,6 @@ class WsserverController extends \yii\web\Controller
                 'model' => $model,
             ]);
 	}
-
 }
 
 /*	{

@@ -3,22 +3,23 @@
 namespace backend\controllers;
 
 use Yii;
+use backend\models\Wsserver;
 
 class WssController
 {
     public function __construct() {
     }
 
-    public function start() {
+    public function start($swt) {
     //open server socket
-    $socket = stream_socket_server("tcp://:0.0.0.0:8080", $errno, $errstr);
+    $socket = stream_socket_server("tcp://vm12721.hv8.ru:8080", $errno, $errstr);
     
     if (!$socket) {
         die("error: stream_socket_server: $errorString ($errorNumber)\r\n");
     }
 
     $connects = [];
-    while (true) {
+    while ($swt == 1) {
     //формируем массив прослушиваемых сокетов:
     $read = $connects;
     $read []= $socket;
