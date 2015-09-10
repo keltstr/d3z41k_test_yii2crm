@@ -94,8 +94,6 @@ class WsclientController extends Wsclient
 	{
 		// send data:
 		fwrite($this->socket, $this->encode($data) or die('Error:' . $errno . ':' . $errstr); 
-		$wsData = fread($this->socket, 2000);       
-		return $wsData;
 	}
  
 	private function connect($host, $port)
