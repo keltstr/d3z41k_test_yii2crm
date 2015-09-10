@@ -1,5 +1,5 @@
 <?php
-	$this->registerJsFile('/backend/web/js/socket.js');
+	$this->registerJsFile('/frontend/web/js/socket.js');
 	echo '<b>ClientSocket</b>';
 ?>
 <!DOCTYPE html>

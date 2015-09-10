@@ -34,7 +34,7 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'Users', 'url' => ['/users/index']],
-                ['label' => 'UserLog', 'url' => ['/site/userlog']],
+                //['label' => 'UserLog', 'url' => ['/site/userlog']],
                 ['label' => 'UserLog(ws)', 'url' => ['/site/socket']],
             ];
             if (Yii::$app->user->isGuest) {
