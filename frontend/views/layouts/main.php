@@ -19,6 +19,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <!-- <script src="https://cdn.socket.io/socket.io-1.3.6.js"></script> -->
     <?php $this->head() ?>
 </head>
 <body>
@@ -35,8 +36,10 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'Clients', 'url' => ['/clients/index']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
                 //['label' => 'Socket', 'url' => ['/site/socket']],
-				//['label' => 'About', 'url' => ['/site/about']],					
+				//['label' => 'About', 'url' => ['/site/about']],
+                //['label' => 'Chat', 'url' => ['/site/chat']],					
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

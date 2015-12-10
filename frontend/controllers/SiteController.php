@@ -12,6 +12,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use common\models\User;
 
 
@@ -41,7 +42,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['socket'],
+                        'actions' => ['socket', 'chat'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -87,11 +88,34 @@ class SiteController extends Controller
         
         return $this->render('about');
     }
+    public function actionConsole()
+    {
+        
+        return $this->render('console');
+    }
 
         public function actionSocket()
     {
         
         return $this->render('socket');
+    }
+
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail('dd@animmotion.ru')) {
+                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            } else {
+                Yii::$app->session->setFlash('error', 'There was an error sending email.');
+            }
+
+            return $this->refresh();
+        } else {
+            return $this->render('contact', [
+                'model' => $model,
+            ]);
+        }
     }
 
     public function actionLogin()
@@ -131,6 +155,21 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+    public function actionChat()
+    {
+        if (Yii::$app->request->post()) {
+
+        $name = Yii::$app->request->post('name');
+        $message = Yii::$app->request->post('message');
+
+        return Yii::$app->redis->executeCommand('PUBLISH', [
+            'channel' => 'notification',
+            'message' => Json::encode(['name' => $name, 'message' => $message])
+        ]);
+        }
+        return $this->render('chat');
     }
 
     public function actionRequestPasswordReset()

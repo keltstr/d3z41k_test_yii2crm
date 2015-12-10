@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-
+use yii\bootstrap\Modal;
 $this->title = 'yii2crm - admin';
 ?>
 <div class="site-index">
@@ -9,8 +9,19 @@ $this->title = 'yii2crm - admin';
         <h1>Yii2CRM - Admin</h1>
 
         <p class="lead">This is the administration panel for Yii2CRM.</p>
+        <?php
+        Modal::begin([
+            'header' => '<h2>This is the test CRM system.</h2>',
+            'toggleButton' => [
+            'tag' => 'button',
+            'class' => 'btn btn-default btn-lg btn-info',
+            'label' => 'Information about application',
+            ]
+        ]);
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        echo 'It was developed for learning to the yii2 framework.';
+        Modal::end();
+        ?>
     </div>
 
     <div class="body-content">

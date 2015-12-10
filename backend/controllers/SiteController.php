@@ -29,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index', 'userlog', 'socket'],
+                        'actions' => ['index', 'userlog', 'socket', 'console'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -67,6 +67,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    
+    public function actionConsole()
+    {
+        
+        return $this->render('console');
     }
 
     public function actionUserlog()

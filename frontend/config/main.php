@@ -12,6 +12,25 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+     'mail' => [
+        'class' => 'yii\swiftmailer\Mailer',
+        'viewPath' => '@common/mail',
+        'useFileTransport' => false,
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'host' => 'smtp.mail.ru',
+            'username' => 'dd@animmonion.ru',
+            'password' => '61zm0_n1xxx',
+            'port' => '465',
+            'encryption' => 'ssl',
+            ],
+        ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -28,6 +47,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+     
 		/*'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
